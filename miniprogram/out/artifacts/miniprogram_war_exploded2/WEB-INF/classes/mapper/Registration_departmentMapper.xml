@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aode.dao.Registration_departmentMapper">
+  <resultMap id="BaseResultMap" type="com.aode.bean.Registration_department">
+    <id column="regInfo_id" jdbcType="INTEGER" property="reginfoId" />
+    <result column="regInfo_departmentId" jdbcType="INTEGER" property="reginfoDepartmentid" />
+    <result column="regInfo_name" jdbcType="VARCHAR" property="reginfoName" />
+    <result column="regInfo_department" jdbcType="VARCHAR" property="reginfoDepartment" />
+    <result column="regInfo_major" jdbcType="VARCHAR" property="reginfoMajor" />
+    <result column="regInfo_phoneNumber" jdbcType="VARCHAR" property="reginfoPhonenumber" />
+    <result column="regInfo_qq" jdbcType="VARCHAR" property="reginfoQq" />
+    <result column="regInfo_wechar" jdbcType="VARCHAR" property="reginfoWechar" />
+    <result column="regInfo_addReasons" jdbcType="VARCHAR" property="reginfoAddreasons" />
+    <result column="regInfo_introduction" jdbcType="VARCHAR" property="reginfoIntroduction" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    regInfo_id, regInfo_departmentId, regInfo_name, regInfo_department, regInfo_major, 
+    regInfo_phoneNumber, regInfo_qq, regInfo_wechar, regInfo_addReasons, regInfo_introduction
+  </sql>
+  <select id="selectByExample" parameterType="com.aode.bean.Registration_departmentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from registration_department
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from registration_department
+    where regInfo_id = #{reginfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from registration_department
+    where regInfo_id = #{reginfoId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aode.bean.Registration_departmentExample">
+    delete from registration_department
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aode.bean.Registration_department">
+    insert into registration_department (regInfo_id, regInfo_departmentId, regInfo_name, 
+      regInfo_department, regInfo_major, regInfo_phoneNumber, 
+      regInfo_qq, regInfo_wechar, regInfo_addReasons, 
+      regInfo_introduction)
+    values (#{reginfoId,jdbcType=INTEGER}, #{reginfoDepartmentid,jdbcType=INTEGER}, #{reginfoName,jdbcType=VARCHAR}, 
+      #{reginfoDepartment,jdbcType=VARCHAR}, #{reginfoMajor,jdbcType=VARCHAR}, #{reginfoPhonenumber,jdbcType=VARCHAR}, 
+      #{reginfoQq,jdbcType=VARCHAR}, #{reginfoWechar,jdbcType=VARCHAR}, #{reginfoAddreasons,jdbcType=VARCHAR}, 
+      #{reginfoIntroduction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aode.bean.Registration_department">
+    insert into registration_department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reginfoId != null">
+        regInfo_id,
+      </if>
+      <if test="reginfoDepartmentid != null">
+        regInfo_departmentId,
+      </if>
+      <if test="reginfoName != null">
+        regInfo_name,
+      </if>
+      <if test="reginfoDepartment != null">
+        regInfo_department,
+      </if>
+      <if test="reginfoMajor != null">
+        regInfo_major,
+      </if>
+      <if test="reginfoPhonenumber != null">
+        regInfo_phoneNumber,
+      </if>
+      <if test="reginfoQq != null">
+        regInfo_qq,
+      </if>
+      <if test="reginfoWechar != null">
+        regInfo_wechar,
+      </if>
+      <if test="reginfoAddreasons != null">
+        regInfo_addReasons,
+      </if>
+      <if test="reginfoIntroduction != null">
+        regInfo_introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reginfoId != null">
+        #{reginfoId,jdbcType=INTEGER},
+      </if>
+      <if test="reginfoDepartmentid != null">
+        #{reginfoDepartmentid,jdbcType=INTEGER},
+      </if>
+      <if test="reginfoName != null">
+        #{reginfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoDepartment != null">
+        #{reginfoDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoMajor != null">
+        #{reginfoMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoPhonenumber != null">
+        #{reginfoPhonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoQq != null">
+        #{reginfoQq,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoWechar != null">
+        #{reginfoWechar,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoAddreasons != null">
+        #{reginfoAddreasons,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoIntroduction != null">
+        #{reginfoIntroduction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aode.bean.Registration_departmentExample" resultType="java.lang.Long">
+    select count(*) from registration_department
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update registration_department
+    <set>
+      <if test="record.reginfoId != null">
+        regInfo_id = #{record.reginfoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reginfoDepartmentid != null">
+        regInfo_departmentId = #{record.reginfoDepartmentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.reginfoName != null">
+        regInfo_name = #{record.reginfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reginfoDepartment != null">
+        regInfo_department = #{record.reginfoDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reginfoMajor != null">
+        regInfo_major = #{record.reginfoMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reginfoPhonenumber != null">
+        regInfo_phoneNumber = #{record.reginfoPhonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reginfoQq != null">
+        regInfo_qq = #{record.reginfoQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reginfoWechar != null">
+        regInfo_wechar = #{record.reginfoWechar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reginfoAddreasons != null">
+        regInfo_addReasons = #{record.reginfoAddreasons,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reginfoIntroduction != null">
+        regInfo_introduction = #{record.reginfoIntroduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update registration_department
+    set regInfo_id = #{record.reginfoId,jdbcType=INTEGER},
+      regInfo_departmentId = #{record.reginfoDepartmentid,jdbcType=INTEGER},
+      regInfo_name = #{record.reginfoName,jdbcType=VARCHAR},
+      regInfo_department = #{record.reginfoDepartment,jdbcType=VARCHAR},
+      regInfo_major = #{record.reginfoMajor,jdbcType=VARCHAR},
+      regInfo_phoneNumber = #{record.reginfoPhonenumber,jdbcType=VARCHAR},
+      regInfo_qq = #{record.reginfoQq,jdbcType=VARCHAR},
+      regInfo_wechar = #{record.reginfoWechar,jdbcType=VARCHAR},
+      regInfo_addReasons = #{record.reginfoAddreasons,jdbcType=VARCHAR},
+      regInfo_introduction = #{record.reginfoIntroduction,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aode.bean.Registration_department">
+    update registration_department
+    <set>
+      <if test="reginfoDepartmentid != null">
+        regInfo_departmentId = #{reginfoDepartmentid,jdbcType=INTEGER},
+      </if>
+      <if test="reginfoName != null">
+        regInfo_name = #{reginfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoDepartment != null">
+        regInfo_department = #{reginfoDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoMajor != null">
+        regInfo_major = #{reginfoMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoPhonenumber != null">
+        regInfo_phoneNumber = #{reginfoPhonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoQq != null">
+        regInfo_qq = #{reginfoQq,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoWechar != null">
+        regInfo_wechar = #{reginfoWechar,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoAddreasons != null">
+        regInfo_addReasons = #{reginfoAddreasons,jdbcType=VARCHAR},
+      </if>
+      <if test="reginfoIntroduction != null">
+        regInfo_introduction = #{reginfoIntroduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where regInfo_id = #{reginfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aode.bean.Registration_department">
+    update registration_department
+    set regInfo_departmentId = #{reginfoDepartmentid,jdbcType=INTEGER},
+      regInfo_name = #{reginfoName,jdbcType=VARCHAR},
+      regInfo_department = #{reginfoDepartment,jdbcType=VARCHAR},
+      regInfo_major = #{reginfoMajor,jdbcType=VARCHAR},
+      regInfo_phoneNumber = #{reginfoPhonenumber,jdbcType=VARCHAR},
+      regInfo_qq = #{reginfoQq,jdbcType=VARCHAR},
+      regInfo_wechar = #{reginfoWechar,jdbcType=VARCHAR},
+      regInfo_addReasons = #{reginfoAddreasons,jdbcType=VARCHAR},
+      regInfo_introduction = #{reginfoIntroduction,jdbcType=VARCHAR}
+    where regInfo_id = #{reginfoId,jdbcType=INTEGER}
+  </update>
+</mapper>
